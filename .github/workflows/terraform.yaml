@@ -73,7 +73,7 @@ jobs:
             terraform.tfstate
             terraform.tfstate.backup
             .terraform
-          key: terraform-state-${{ github.repository }name: Terraform CI/CD
+          key: terraform-state-${{ github.repository }name: Terraform CI/CD }}
 
 on:
   push:
