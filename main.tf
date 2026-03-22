@@ -65,7 +65,7 @@ provider "aws" {
 variable "bucket_suffix" {
   description = "Unique suffix for bucket name (use your initials)"
   type        = string
-  default     = "vau"  # CHANGE THIS to your initials!
+  default     = "vau1"  # CHANGE THIS to your initials!
 }
 
 variable "environment" {
