@@ -1,4 +1,3 @@
-# Simple S3 bucket to demonstrate GitHub Actions automation
 terraform {
   required_providers {
     aws = {
@@ -15,57 +14,7 @@ provider "aws" {
 variable "bucket_suffix" {
   description = "Unique suffix for bucket name (use your initials)"
   type        = string
-  default     = "vau"  # CHANGE THIS to your initials!
-}
-
-# S3 Bucket - using fixed name to prevent duplicates
-resource "aws_s3_bucket" "demo" {
-  bucket = "cloudburst-demo-${var.bucket_suffix}"
-
-  tags = {
-    Name        = "CloudBurst Demo Bucket"
-    Environment = "dev"
-    ManagedBy   = "terraform"
-    DeployedBy  = "github-actions"
-    TestTag="pr-comment-test"
-  }
-}
-
-# Output the bucket name
-output "bucket_name" {
-  description = "Name of the created S3 bucket"
-  value       = aws_s3_bucket.demo.bucket
-}
-
-output "bucket_arn" {
-  description = "ARN of the created S3 bucket"
-  value       = aws_s3_bucket.demo.arn
-}# Enable versioning on the bucket
-resource "aws_s3_bucket_versioning" "demo" {
-  bucket = aws_s3_bucket.demo.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "eu-west-2"
-}
-
-variable "bucket_suffix" {
-  description = "Unique suffix for bucket name (use your initials)"
-  type        = string
-  default     = "vau1"  # CHANGE THIS to your initials!
+  default     = "vaue"  # CHANGE THIS to your initials!
 }
 
 variable "environment" {
@@ -79,11 +28,11 @@ resource "random_id" "bucket_suffix" {
 }
 
 resource "aws_s3_bucket" "demo" {
-  bucket = "cloudburst-${vau1.environment}-${var.bucket_suffix}"
+  bucket = "cloudburst-${vaue.environment}-${var.bucket_suffix}"
 
   tags = {
-    Name        = "CloudBurst ${vau1.environment} Bucket"
-    Environment = vau1.environment
+    Name        = "CloudBurst ${vaue.environment} Bucket"
+    Environment = var.environment
     ManagedBy   = "terraform"
     DeployedBy  = "github-actions"
   }
@@ -98,4 +47,3 @@ output "environment" {
   description = "Deployment environment"
   value       = var.environment
 }
-
