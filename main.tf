@@ -79,11 +79,11 @@ resource "random_id" "bucket_suffix" {
 }
 
 resource "aws_s3_bucket" "demo" {
-  bucket = "cloudburst-${vau.environment}-${var.bucket_suffix}"
+  bucket = "cloudburst-${vau1.environment}-${var.bucket_suffix}"
 
   tags = {
-    Name        = "CloudBurst ${vau.environment} Bucket"
-    Environment = vau.environment
+    Name        = "CloudBurst ${vau1.environment} Bucket"
+    Environment = vau1.environment
     ManagedBy   = "terraform"
     DeployedBy  = "github-actions"
   }
