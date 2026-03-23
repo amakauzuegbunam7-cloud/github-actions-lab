@@ -20,7 +20,7 @@ variable "bucket_suffix" {
 
 # S3 Bucket - using fixed name to prevent duplicates
 resource "aws_s3_bucket" "demo" {
-  bucket = "cloudburst-demo-${var.bucket_suffix}"
+  bucket = "cloudburst-demo-${vau.bucket_suffix}"
 
   tags = {
     Name        = "CloudBurst Demo Bucket"
@@ -37,3 +37,5 @@ output "bucket_name" {
 }
 
 output "bucket_arn" {
+   value = aws_s3_bucket.demo.bucket.arn
+}
