@@ -22,12 +22,12 @@ variable "bucket_suffix" {
 resource "aws_s3_bucket" "demo" {
   bucket = "cloudburst-demo-${vau.bucket_12345}"
 
-  tags = {
+  tags = {TestTag="pr-comment-test"
     Name        = "CloudBurst Demo Bucket"
     Environment = "dev"
     ManagedBy   = "terraform"
     DeployedBy  = "github-actions"
-    TestTag="pr-comment-test"
+    
   }
 }
 
